@@ -1,0 +1,137 @@
+:root {
+  --toast-background: green;
+  --toast-color: white;
+  --toast-speed: 200ms;
+  --toast-animation: fade-in-left;
+}
+
+.toast {
+  position: fixed;
+  z-index: 1;
+  background-color: var(--toast-background);
+  color: var(--toast-color);
+
+}
+
+.toast .progress-bar {
+  animation: progress-bar var(--duration);
+  transition: all var(--duration);
+}
+
+.toast:last-child {
+  animation: var(--toast-animation) var(--toast-speed);
+  transition: transform var(--toast-speed), opacity var(--toast-speed),
+    box-shadow var(--toast-speed) ease-in-out;
+}
+
+[data-position="center"] {
+  bottom: calc(70% - (var(--index) * 60px));
+  left: 50%;
+  transform: translate(-50%, -50%);
+  --toast-animation: fade-in-center;
+}
+
+[data-position="bottom"] {
+  bottom: calc(70px * (var(--index) * 0.9));
+  left: 50%;
+  transform: translateX(-50%);
+  --toast-animation: fade-in-center;
+}
+
+[data-position="bottom-right"] {
+  bottom: calc(70px * (var(--index) * 0.9));
+  right: 30px;
+  --toast-animation: fade-in-right;
+}
+
+[data-position="bottom-left"] {
+  bottom: calc(70px * (var(--index) * 0.9));
+  left: 30px;
+  --toast-animation: fade-in-left;
+}
+
+[data-position="top"] {
+  top: calc(70px * (var(--index) * 0.9));
+  left: 50%;
+  transform: translateX(-50%);
+  --toast-animation: fade-in-right;
+}
+
+[data-position="top-right"] {
+  top: calc(70px * (var(--index) * 0.9));
+  right: 30px;
+  --toast-animation: fade-in-right;
+}
+
+[data-position="top-left"] {
+  top: calc(70px * (var(--index) * 0.9));
+  left: 30px;
+  --toast-animation: fade-in-left;
+}
+
+[data-status="success"] {
+  --toast-background: green;
+  --toast-color: white;
+}
+
+[data-status="warning"] {
+  --toast-background: yellow;
+  --toast-color: black;
+}
+
+[data-status="loading"],
+[data-status="info"] {
+  --toast-background: aquamarine;
+  --toast-color: black;
+}
+
+[data-status="error"] {
+  --toast-background: red;
+  --toast-color: white;
+}
+
+@keyframes fade-in-right {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fade-in-left {
+  from {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fade-in-center {
+  from {
+    opacity: 0;
+    transform: translateX(-50%);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes progress-bar {
+  from {
+    width: 100%;
+  }
+
+  to {
+    width: 0;
+  }
+}
